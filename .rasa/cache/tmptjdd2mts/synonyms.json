@@ -1,0 +1,9 @@
+{
+  "ifcproject": "IFCProject",
+  "ifcbuilding": "IFCBuilding",
+  "ifcsite": "IFCSite",
+  "ifcdoor": "IFCDOOR",
+  "ifcwindow": "IFCWindow",
+  "ifcwall": "IFCWall",
+  "4003-d01": "4003-D01"
+}

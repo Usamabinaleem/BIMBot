@@ -1,0 +1,135 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+
+
+- intent: ask_ifc_class_existence
+  examples: |
+    - Does this model have an entity of type [IFCProject](ifc_class)?
+    - Is there an [IFCBuilding](ifc_class) in the model?
+    - Does the model include [IFCSite](ifc_class)?
+    - Does the model have [IFCDOOR](ifc_class)?
+    - Are there any IFC entities of type [IFCDoor](ifc_class)?
+    - Is there an entity like [IFCWindow](ifc_class) in the model?
+    - Do we have something called [IFCWall](ifc_class) in the project?
+    - Can you find [IFCBuilding](ifc_class) in the IFC file?
+
+
+#- intent: query_ifc_property
+#  examples: |
+#    - What are the properties of [IFCWall](ifc_class)?
+#    - Tell me the attributes of [IFCWindow](ifc_class)
+#    - What is the [height](property_name) of the [IFCDoor](ifc_class)?
+#    - What is the [name](property_name) of the [IFCProject](ifc_class)?
+#    - What is the name of the [IFCProject](ifc_class)?
+#    - What are the properties of [IFCWall](ifc_class)?
+#    - Tell me the attributes of [IFCDoor](ifc_class)
+#    - What are the dimensions of [IFCWindow](ifc_class)?
+
+
+
+
+- intent: query_ifc_property
+  examples: |
+    - What are the properties of the IFC door by the name [4003-D01](entity_name)?
+    - Tell me the properties of the door named [4003-D01](entity_name).
+    - I need details on the IFC door [4003-D01](entity_name).
+    - Can you list the properties of [4003-D01](entity_name) door?
+
+
+
+- intent: list_ifc_entities
+  examples: |
+    - What are the names of the classes [IFCDOOR](ifc_class) present in the model?
+    - List all [IFCDOOR](ifc_class) entities in the model.
+    - Can you tell me the names of all [IFCWINDOW](ifc_class) entities?
+    - Give me the names of all the [IFCWALL](ifc_class) entities in the model.

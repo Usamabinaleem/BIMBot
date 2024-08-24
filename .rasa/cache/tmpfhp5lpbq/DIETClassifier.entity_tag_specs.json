@@ -1,0 +1,28 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-ifc_class",
+      "2": "I-ifc_class",
+      "3": "L-ifc_class",
+      "4": "U-ifc_class",
+      "5": "B-property_name",
+      "6": "I-property_name",
+      "7": "L-property_name",
+      "8": "U-property_name",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-ifc_class": 1,
+      "I-ifc_class": 2,
+      "L-ifc_class": 3,
+      "U-ifc_class": 4,
+      "B-property_name": 5,
+      "I-property_name": 6,
+      "L-property_name": 7,
+      "U-property_name": 8,
+      "O": 0
+    },
+    "num_tags": 9
+  }
+]

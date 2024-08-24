@@ -1,0 +1,30 @@
+version: "3.1"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say 'I am a bot' anytime the user challenges
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: respond to ifc class existence query
+  steps:
+  - intent: ask_ifc_class_existence
+  - action: action_check_ifc_class
+
+- rule: handle ifc property query
+  steps:
+  - intent: query_ifc_property
+  - action: action_query_ifc_property
+
+
+
+- rule: List IFC entities by name
+  steps:
+    - intent: list_ifc_entities
+    - action: action_list_ifc_entities

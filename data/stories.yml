@@ -1,0 +1,50 @@
+version: "3.1"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: check ifc class existence
+  steps:
+  - intent: ask_ifc_class_existence
+  - action: action_check_ifc_class
+
+
+- story: respond to ifc property query
+  steps:
+  - intent: query_ifc_property
+  - action: action_query_ifc_property
+
+
+
+
+- story: List IFC entities by name
+  steps:
+    - intent: list_ifc_entities
+    - action: action_list_ifc_entities
+

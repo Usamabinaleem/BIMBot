@@ -1,0 +1,10 @@
+{
+  "ifcproject": "IFCProject",
+  "ifcbuilding": "IFCBuilding",
+  "ifcsite": "IFCSite",
+  "ifcdoor": "IFCDOOR",
+  "ifcwindow": "IFCWindow",
+  "ifcwall": "IFCWall",
+  "height": "height",
+  "name": "name"
+}

@@ -1,0 +1,82 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - Bot_Purpose
+  - Bot_creation
+  - ask_ifc_class_existence
+  - query_ifc_property
+  - ask_ifc_class_names
+  - list_ifc_entities
+
+entities:
+  - ifc_class
+  - property_name
+  - entity_name
+
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_ifc_class:
+  - text: "Please specify the IFC class you want to check."
+
+  utter_ask_property_name:
+  - text: "I'm sorry, I didn't understand that. Can you please rephrase?"
+
+actions:
+  - action_bot_purpose
+  - action_bot_creation
+  - action_check_ifc_class
+  - action_query_ifc_property
+  - action_list_ifc_entities
+
+
+slots:
+  ifc_class:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: ifc_class
+  property_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: property_name
+  entity_name:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: entity_name
+
+
+
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

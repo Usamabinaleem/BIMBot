@@ -1,0 +1,8 @@
+{
+  "ifc entity": "IFC entity",
+  "ifc entities": "IFC entities",
+  "ifcdoor": "IFCDoor",
+  "ifcwindow": "IFCWindow",
+  "ifcwall": "IFCWall",
+  "ifcbuilding": "IFCBuilding"
+}

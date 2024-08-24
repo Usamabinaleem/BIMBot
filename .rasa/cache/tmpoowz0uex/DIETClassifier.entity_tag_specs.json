@@ -1,0 +1,52 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-Condition Property",
+      "2": "I-Condition Property",
+      "3": "L-Condition Property",
+      "4": "U-Condition Property",
+      "5": "B-Condition Value",
+      "6": "I-Condition Value",
+      "7": "L-Condition Value",
+      "8": "U-Condition Value",
+      "9": "B-Door Property",
+      "10": "I-Door Property",
+      "11": "L-Door Property",
+      "12": "U-Door Property",
+      "13": "B-Type Mark",
+      "14": "I-Type Mark",
+      "15": "L-Type Mark",
+      "16": "U-Type Mark",
+      "17": "B-property_name",
+      "18": "I-property_name",
+      "19": "L-property_name",
+      "20": "U-property_name",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-Condition Property": 1,
+      "I-Condition Property": 2,
+      "L-Condition Property": 3,
+      "U-Condition Property": 4,
+      "B-Condition Value": 5,
+      "I-Condition Value": 6,
+      "L-Condition Value": 7,
+      "U-Condition Value": 8,
+      "B-Door Property": 9,
+      "I-Door Property": 10,
+      "L-Door Property": 11,
+      "U-Door Property": 12,
+      "B-Type Mark": 13,
+      "I-Type Mark": 14,
+      "L-Type Mark": 15,
+      "U-Type Mark": 16,
+      "B-property_name": 17,
+      "I-property_name": 18,
+      "L-property_name": 19,
+      "U-property_name": 20,
+      "O": 0
+    },
+    "num_tags": 21
+  }
+]

@@ -1,0 +1,910 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Welcome to BIMBOT 6k</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            font-family: Arial, sans-serif;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f0f4f8;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #333;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #chatContainer {&ndash;&gt;-->
+<!--&lt;!&ndash;            position: fixed;&ndash;&gt;-->
+<!--&lt;!&ndash;            bottom: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            right: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            width: 300px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #fff;&ndash;&gt;-->
+<!--&lt;!&ndash;            display: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            flex-direction: column;&ndash;&gt;-->
+<!--&lt;!&ndash;            box-shadow: 0 4px 8px rgba(0,0,0,0.15);&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ddd;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #chatHeader {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #3578e5;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 5px 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            display: flex;&ndash;&gt;-->
+<!--&lt;!&ndash;            justify-content: flex-end;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-top-left-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-top-right-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #minimize_button {&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            background: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 16px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #chatbox {&ndash;&gt;-->
+<!--&lt;!&ndash;            height: 300px;&ndash;&gt;-->
+<!--&lt;!&ndash;            overflow-y: scroll;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 0 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #e7f3ff;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-bottom: 2px solid #3578e5;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .message {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .user {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #d2e5ff; /* Light blue */&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: right;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .bot {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #f0f0f0; /* Light grey */&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: left;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #user_input, #send_button {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #user_input {&ndash;&gt;-->
+<!--&lt;!&ndash;            flex-grow: 1;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 8px;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: 1px solid #ccc;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 4px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #send_button {&ndash;&gt;-->
+<!--&lt;!&ndash;            flex-basis: 30%;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #3578e5;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 8px 10px;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 16px;&ndash;&gt;-->
+<!--&lt;!&ndash;            transition: background-color 0.3s;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #send_button:hover {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #2a62c4;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        #toggleChatBtn {&ndash;&gt;-->
+<!--&lt;!&ndash;            position: fixed;&ndash;&gt;-->
+<!--&lt;!&ndash;            bottom: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            right: 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            padding: 10px 20px;&ndash;&gt;-->
+<!--&lt;!&ndash;            font-size: 16px;&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #3578e5;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;            border-radius: 5px;&ndash;&gt;-->
+<!--&lt;!&ndash;            cursor: pointer;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        h1 {&ndash;&gt;-->
+<!--&lt;!&ndash;            text-align: center;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: #3578e5;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Welcome to BIMBOT 6k</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <button id="toggleChatBtn">Chat with BIMBOT 6k</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    <div id="chatContainer">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="chatHeader">&ndash;&gt;-->
+<!--&lt;!&ndash;            <button id="minimize_button">-</button>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div id="chatbox"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" id="user_input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button id="send_button">Send</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <script>&ndash;&gt;-->
+<!--&lt;!&ndash;        document.getElementById('toggleChatBtn').onclick = function() {&ndash;&gt;-->
+<!--&lt;!&ndash;            var chatContainer = document.getElementById('chatContainer');&ndash;&gt;-->
+<!--&lt;!&ndash;            var isVisible = chatContainer.style.display === 'flex';&ndash;&gt;-->
+<!--&lt;!&ndash;            chatContainer.style.display = isVisible ? 'none' : 'flex';&ndash;&gt;-->
+<!--&lt;!&ndash;        };&ndash;&gt;-->
+
+<!--&lt;!&ndash;        document.getElementById('minimize_button').onclick = function() {&ndash;&gt;-->
+<!--&lt;!&ndash;            document.getElementById('chatContainer').style.display = 'none';&ndash;&gt;-->
+<!--&lt;!&ndash;        };&ndash;&gt;-->
+
+<!--&lt;!&ndash;        document.getElementById('send_button').onclick = function() {&ndash;&gt;-->
+<!--&lt;!&ndash;            sendMessage();&ndash;&gt;-->
+<!--&lt;!&ndash;        };&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function handleKeyPress(event) {&ndash;&gt;-->
+<!--&lt;!&ndash;            if (event.key === "Enter") {&ndash;&gt;-->
+<!--&lt;!&ndash;                event.preventDefault(); // Prevent the default action to stop form submission&ndash;&gt;-->
+<!--&lt;!&ndash;                sendMessage();&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function sendMessage() {&ndash;&gt;-->
+<!--&lt;!&ndash;            var userText = document.getElementById('user_input').value;&ndash;&gt;-->
+<!--&lt;!&ndash;            if (userText.trim() !== '') {&ndash;&gt;-->
+<!--&lt;!&ndash;                document.getElementById('user_input').value = ''; // Clear input box&ndash;&gt;-->
+<!--&lt;!&ndash;                updateChat(userText, "You");&ndash;&gt;-->
+<!--&lt;!&ndash;                fetch('/send', {&ndash;&gt;-->
+<!--&lt;!&ndash;                    method: 'POST',&ndash;&gt;-->
+<!--&lt;!&ndash;                    body: JSON.stringify({message: userText}),&ndash;&gt;-->
+<!--&lt;!&ndash;                    headers: {&ndash;&gt;-->
+<!--&lt;!&ndash;                        'Content-Type': 'application/json'&ndash;&gt;-->
+<!--&lt;!&ndash;                    }&ndash;&gt;-->
+<!--&lt;!&ndash;                })&ndash;&gt;-->
+<!--&lt;!&ndash;                .then(response => response.json())&ndash;&gt;-->
+<!--&lt;!&ndash;                .then(data => {&ndash;&gt;-->
+<!--&lt;!&ndash;                    updateChat(data.message, "Bot");&ndash;&gt;-->
+<!--&lt;!&ndash;                })&ndash;&gt;-->
+<!--&lt;!&ndash;                .catch(error => console.error('Error:', error));&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function updateChat(msg, sender) {&ndash;&gt;-->
+<!--&lt;!&ndash;            var chatBox = document.getElementById('chatbox');&ndash;&gt;-->
+<!--&lt;!&ndash;            var newMsg = document.createElement('div');&ndash;&gt;-->
+<!--&lt;!&ndash;            newMsg.classList.add('message');&ndash;&gt;-->
+<!--&lt;!&ndash;            newMsg.innerText = msg;&ndash;&gt;-->
+<!--&lt;!&ndash;            if (sender === "You") {&ndash;&gt;-->
+<!--&lt;!&ndash;                newMsg.classList.add('user');&ndash;&gt;-->
+<!--&lt;!&ndash;            } else {&ndash;&gt;-->
+<!--&lt;!&ndash;                newMsg.classList.add('bot');&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;            chatBox.appendChild(newMsg);&ndash;&gt;-->
+<!--&lt;!&ndash;            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to the latest message&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </script>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Chatbot</title>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>Chatbot Interface</h1>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    &lt;!&ndash; Drag and Drop File Upload &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    <form id="uploadForm" enctype="multipart/form-data">&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="file" id="fileInput" name="file">&ndash;&gt;-->
+<!--&lt;!&ndash;        <button type="submit">Upload IFC File</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div id="chatbox">&ndash;&gt;-->
+<!--&lt;!&ndash;        &lt;!&ndash; Chatbox UI elements &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <script>&ndash;&gt;-->
+<!--&lt;!&ndash;        document.getElementById('uploadForm').addEventListener('submit', function(event) {&ndash;&gt;-->
+<!--&lt;!&ndash;            event.preventDefault();&ndash;&gt;-->
+<!--&lt;!&ndash;            var formData = new FormData();&ndash;&gt;-->
+<!--&lt;!&ndash;            var file = document.getElementById('fileInput').files[0];&ndash;&gt;-->
+<!--&lt;!&ndash;            formData.append('file', file);&ndash;&gt;-->
+
+<!--&lt;!&ndash;            fetch('/upload', {&ndash;&gt;-->
+<!--&lt;!&ndash;                method: 'POST',&ndash;&gt;-->
+<!--&lt;!&ndash;                body: formData&ndash;&gt;-->
+<!--&lt;!&ndash;            }).then(response => response.json())&ndash;&gt;-->
+<!--&lt;!&ndash;              .then(data => {&ndash;&gt;-->
+<!--&lt;!&ndash;                  alert(data.message);&ndash;&gt;-->
+<!--&lt;!&ndash;              }).catch(error => {&ndash;&gt;-->
+<!--&lt;!&ndash;                  console.error('Error:', error);&ndash;&gt;-->
+<!--&lt;!&ndash;              });&ndash;&gt;-->
+<!--&lt;!&ndash;        });&ndash;&gt;-->
+<!--&lt;!&ndash;    </script>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Welcome to BIMBOT 6k</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            background-color: #f0f4f8;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        #chatContainer {-->
+<!--            position: fixed;-->
+<!--            bottom: 20px;-->
+<!--            right: 20px;-->
+<!--            width: 300px;-->
+<!--            border-radius: 10px;-->
+<!--            background-color: #fff;-->
+<!--            display: none;-->
+<!--            flex-direction: column;-->
+<!--            box-shadow: 0 4px 8px rgba(0,0,0,0.15);-->
+<!--            border: 1px solid #ddd;-->
+<!--        }-->
+<!--        #chatHeader {-->
+<!--            background-color: #3578e5;-->
+<!--            color: white;-->
+<!--            padding: 5px 10px;-->
+<!--            display: flex;-->
+<!--            justify-content: flex-end;-->
+<!--            border-top-left-radius: 10px;-->
+<!--            border-top-right-radius: 10px;-->
+<!--        }-->
+<!--        #minimize_button {-->
+<!--            border: none;-->
+<!--            background: none;-->
+<!--            color: white;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 16px;-->
+<!--        }-->
+<!--        #chatbox {-->
+<!--            height: 300px;-->
+<!--            overflow-y: scroll;-->
+<!--            padding: 8px;-->
+<!--            margin: 0 5px;-->
+<!--            background-color: #e7f3ff;-->
+<!--            border-bottom: 2px solid #3578e5;-->
+<!--        }-->
+<!--        .message {-->
+<!--            margin: 5px;-->
+<!--            padding: 5px;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+<!--        .user {-->
+<!--            background-color: #d2e5ff; /* Light blue */-->
+<!--            text-align: right;-->
+<!--        }-->
+<!--        .bot {-->
+<!--            background-color: #f0f0f0; /* Light grey */-->
+<!--            text-align: left;-->
+<!--        }-->
+<!--        #user_input, #send_button {-->
+<!--            margin: 5px;-->
+<!--        }-->
+<!--        #user_input {-->
+<!--            flex-grow: 1;-->
+<!--            padding: 8px;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 4px;-->
+<!--        }-->
+<!--        #send_button {-->
+<!--            flex-basis: 30%;-->
+<!--            background-color: #3578e5;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            padding: 8px 10px;-->
+<!--            cursor: pointer;-->
+<!--            font-size: 16px;-->
+<!--            transition: background-color 0.3s;-->
+<!--        }-->
+<!--        #send_button:hover {-->
+<!--            background-color: #2a62c4;-->
+<!--        }-->
+<!--        #toggleChatBtn {-->
+<!--            position: fixed;-->
+<!--            bottom: 20px;-->
+<!--            right: 20px;-->
+<!--            padding: 10px 20px;-->
+<!--            font-size: 16px;-->
+<!--            background-color: #3578e5;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            color: #3578e5;-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            width: 60%;-->
+<!--            margin: 50px auto;-->
+<!--            padding: 20px;-->
+<!--            background-color: #fff;-->
+<!--            border-radius: 8px;-->
+<!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        }-->
+
+<!--        .upload-section {-->
+<!--            text-align: center;-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        .upload-label {-->
+<!--            display: inline-block;-->
+<!--            background-color: #007BFF;-->
+<!--            color: #fff;-->
+<!--            padding: 10px 20px;-->
+<!--            cursor: pointer;-->
+<!--            border-radius: 4px;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+
+<!--        .upload-section input[type="file"] {-->
+<!--            display: none;-->
+<!--        }-->
+
+<!--        .upload-status {-->
+<!--            margin-top: 10px;-->
+<!--            color: #555;-->
+<!--        }-->
+
+<!--        .description {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+
+<!--        .description h2 {-->
+<!--            color: #333;-->
+<!--            font-size: 20px;-->
+<!--            margin-bottom: 10px;-->
+<!--        }-->
+
+<!--        .description p {-->
+<!--            color: #555;-->
+<!--            line-height: 1.6;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Welcome to BIMBOT 6k</h1>-->
+
+<!--    <div class="container">-->
+<!--        <div class="description">-->
+<!--            <h2>About BIMBOT 6k</h2>-->
+<!--            <p>BIMBOT 6k is your intelligent assistant for interacting with IFC files. Upload your BIM data and ask questions about specific IFC classes, properties, and other details. BIMBOT 6k will provide you with accurate responses based on the data in your IFC files.</p>-->
+<!--        </div>-->
+
+<!--        <div class="upload-section">-->
+<!--            <label for="fileInput" class="upload-label">Choose IFC File</label>-->
+<!--            <input type="file" id="fileInput" name="file">-->
+<!--            <p id="fileName">No file chosen</p>-->
+<!--            <button id="uploadBtn">Upload IFC File</button>-->
+<!--            <p id="uploadStatus" class="upload-status"></p>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <button id="toggleChatBtn">Chat with BIMBOT 6k</button>-->
+<!--    <div id="chatContainer">-->
+<!--        <div id="chatHeader">-->
+<!--            <button id="minimize_button">-</button>-->
+<!--        </div>-->
+<!--        <div id="chatbox"></div>-->
+<!--        <input type="text" id="user_input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">-->
+<!--        <button id="send_button">Send</button>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        document.getElementById('fileInput').addEventListener('change', function() {-->
+<!--            document.getElementById('fileName').textContent = this.files[0].name;-->
+<!--        });-->
+
+<!--        document.getElementById('uploadBtn').addEventListener('click', function(event) {-->
+<!--            event.preventDefault();-->
+<!--            var formData = new FormData();-->
+<!--            var file = document.getElementById('fileInput').files[0];-->
+
+<!--            if (!file) {-->
+<!--                alert('Please select a file first.');-->
+<!--                return;-->
+<!--            }-->
+
+<!--            formData.append('file', file);-->
+
+<!--            fetch('/upload', {-->
+<!--                method: 'POST',-->
+<!--                body: formData-->
+<!--            }).then(response => response.json())-->
+<!--              .then(data => {-->
+<!--                  document.getElementById('uploadStatus').textContent = data.message;-->
+<!--              }).catch(error => {-->
+<!--                  console.error('Error:', error);-->
+<!--                  document.getElementById('uploadStatus').textContent = 'An error occurred during file upload.';-->
+<!--              });-->
+<!--        });-->
+
+<!--        document.getElementById('toggleChatBtn').onclick = function() {-->
+<!--            var chatContainer = document.getElementById('chatContainer');-->
+<!--            var isVisible = chatContainer.style.display === 'flex';-->
+<!--            chatContainer.style.display = isVisible ? 'none' : 'flex';-->
+<!--        };-->
+
+<!--        document.getElementById('minimize_button').onclick = function() {-->
+<!--            document.getElementById('chatContainer').style.display = 'none';-->
+<!--        };-->
+
+<!--        document.getElementById('send_button').onclick = function() {-->
+<!--            sendMessage();-->
+<!--        };-->
+
+<!--        function handleKeyPress(event) {-->
+<!--            if (event.key === "Enter") {-->
+<!--                event.preventDefault(); // Prevent the default action to stop form submission-->
+<!--                sendMessage();-->
+<!--            }-->
+<!--        }-->
+
+<!--        function sendMessage() {-->
+<!--            var userText = document.getElementById('user_input').value;-->
+<!--            if (userText.trim() !== '') {-->
+<!--                document.getElementById('user_input').value = ''; // Clear input box-->
+<!--                updateChat(userText, "You");-->
+<!--                fetch('/send', {-->
+<!--                    method: 'POST',-->
+<!--                    body: JSON.stringify({message: userText}),-->
+<!--                    headers: {-->
+<!--                        'Content-Type': 'application/json'-->
+<!--                    }-->
+<!--                })-->
+<!--                .then(response => response.json())-->
+<!--                .then(data => {-->
+<!--                    updateChat(data.message, "Bot");-->
+<!--                })-->
+<!--                .catch(error => console.error('Error:', error));-->
+<!--            }-->
+<!--        }-->
+
+<!--        function updateChat(msg, sender) {-->
+<!--            var chatBox = document.getElementById('chatbox');-->
+<!--            var newMsg = document.createElement('div');-->
+<!--            newMsg.classList.add('message');-->
+<!--            newMsg.innerText = msg;-->
+<!--            if (sender === "You") {-->
+<!--                newMsg.classList.add('user');-->
+<!--            } else {-->
+<!--                newMsg.classList.add('bot');-->
+<!--            }-->
+<!--            chatBox.appendChild(newMsg);-->
+<!--            chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to the latest message-->
+<!--        }-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BIMBOT 6k</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #mainContainer {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            flex: 1;
+            background-color: #f1f1f1;
+            padding: 10px;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        #newChatBtn {
+            background-color: #3578e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #newChatBtn:hover {
+            background-color: #2a62c4;
+        }
+
+        #chatHistoryContainer {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .chat-history {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-history:hover {
+            background-color: #e0e0e0;
+        }
+
+        #chatContainer {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #uploadSection {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            padding: 10px;
+            background-color: #fff;
+            border-left: 1px solid #ddd;
+        }
+
+        #chatHeader {
+            background-color: #3578e5;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #fileInfo {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+        }
+
+        #chatbox {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 75%;
+            word-wrap: break-word;
+        }
+
+        .user {
+            background-color: #d2e5ff;
+            text-align: right;
+            align-self: flex-end;
+        }
+
+        .bot {
+            background-color: #e0e0e0;
+            text-align: left;
+            align-self: flex-start;
+        }
+
+        #inputContainer {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        #user_input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        #send_button {
+            background-color: #3578e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        #send_button:hover {
+            background-color: #2a62c4;
+        }
+
+        /* Hide the default file input button */
+        #fileInput {
+            display: none;
+        }
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Maintain formatting with line breaks */
+    overflow-wrap: break-word; /* Ensure long words break */
+}
+
+
+        #uploadBtn {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #uploadBtn:hover {
+            background-color: #0056b3;
+        }
+
+        #fileName {
+            margin-top: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainContainer">
+        <div id="sidebar">
+            <button id="newChatBtn">Start New Chat</button>
+            <div id="chatHistoryContainer"></div>
+        </div>
+        <div id="chatContainer">
+            <div id="chatHeader">BIMBOT 6k Chat</div>
+            <div id="fileInfo">No file uploaded</div>
+            <div id="chatbox"></div>
+            <div id="inputContainer">
+                <input type="text" id="user_input" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                <button id="send_button">Send</button>
+            </div>
+        </div>
+        <div id="uploadSection">
+            <label for="fileInput" id="uploadBtn">Upload IFC File</label>
+            <input type="file" id="fileInput" name="file">
+            <p id="fileName">No file chosen</p>
+            <p id="uploadStatus" class="upload-status"></p>
+        </div>
+    </div>
+
+    <script>
+        let chatHistory = [];
+let currentFile = null;
+let currentChatIndex = null;
+
+document.getElementById('fileInput').addEventListener('change', function() {
+    document.getElementById('fileName').textContent = this.files[0].name;
+    uploadFile();
+});
+
+document.getElementById('uploadBtn').addEventListener('click', function(event) {
+    document.getElementById('fileInput').click();
+});
+
+function uploadFile() {
+    var formData = new FormData();
+    var file = document.getElementById('fileInput').files[0];
+
+    if (!file) {
+        alert('Please select a file first.');
+        return;
+    }
+
+    formData.append('file', file);
+
+    fetch('/upload', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'Delete-Previous': 'true'
+        }
+    }).then(response => response.json())
+    .then(data => {
+        document.getElementById('uploadStatus').textContent = data.message;
+        currentFile = file.name;
+        document.getElementById('fileInfo').textContent = `Currently using: ${currentFile}`;
+        if (currentChatIndex !== null) {
+            chatHistory[currentChatIndex].file = currentFile;
+        }
+    }).catch(error => {
+        console.error('Error:', error);
+        document.getElementById('uploadStatus').textContent = 'An error occurred during file upload.';
+    });
+}
+
+document.getElementById('send_button').onclick = function() {
+    sendMessage();
+};
+
+function handleKeyPress(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
+}
+
+function sendMessage() {
+    var userText = document.getElementById('user_input').value;
+    if (userText.trim() !== '') {
+        document.getElementById('user_input').value = '';
+        updateChat(userText, "You");
+
+        fetch('/send', {
+            method: 'POST',
+            body: JSON.stringify({message: userText, file: currentFile}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (!response.body) {
+                updateChat('No response from the server.', "Bot");
+                return;
+            }
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+            let botMsg = '';
+            let done = false;
+
+            const readChunk = () => {
+                reader.read().then(({ done, value }) => {
+                    if (done) {
+                        saveChat(userText, botMsg); // Save the full bot response
+                        return;
+                    }
+
+                    // Convert Uint8Array to string and append to botMsg
+                    const chunk = decoder.decode(value);
+                    botMsg += chunk;
+
+                    // Update the chat in the UI
+                    updateChat(chunk, "Bot");
+
+                    // Continue reading the next chunk
+                    readChunk();
+                });
+            };
+
+            // Start reading chunks
+            readChunk();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            updateChat('Error occurred while sending message.', "Bot");
+        });
+    }
+}
+
+
+function updateChat(msg, sender) {
+    var chatBox = document.getElementById('chatbox');
+    var newMsg;
+
+    // Check if the last message is from the bot and update it
+    if (sender === "Bot" && chatBox.lastElementChild && chatBox.lastElementChild.classList.contains('bot')) {
+        newMsg = chatBox.lastElementChild;
+        newMsg.innerHTML += msg.replace(/\n/g, '<br>');
+    } else {
+        newMsg = document.createElement('div');
+        newMsg.classList.add('message');
+
+        // Replace newlines with <br> to maintain formatting
+        var formattedMsg = msg.replace(/\n/g, '<br>');
+        newMsg.innerHTML = formattedMsg; // Use innerHTML to preserve the <br> tags
+
+        if (sender === "You") {
+            newMsg.classList.add('user');
+        } else {
+            newMsg.classList.add('bot');
+        }
+
+        chatBox.appendChild(newMsg);
+    }
+
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto scroll to the latest message
+}
+
+
+function saveChat(userMsg, botMsg) {
+    if (currentChatIndex === null) {
+        currentChatIndex = chatHistory.length;
+        chatHistory.push({ messages: [], file: currentFile });
+        updateChatHistory();
+    }
+    chatHistory[currentChatIndex].messages.push({ user: userMsg, bot: botMsg });
+}
+
+function updateChatHistory() {
+    var historyContainer = document.getElementById('chatHistoryContainer');
+    historyContainer.innerHTML = '';
+
+    chatHistory.forEach((chat, index) => {
+        let chatItem = document.createElement('div');
+        chatItem.classList.add('chat-history');
+        chatItem.innerText = `Chat ${index + 1}`;
+        chatItem.onclick = () => loadChat(index);
+        historyContainer.appendChild(chatItem);
+    });
+}
+
+function loadChat(index) {
+    currentChatIndex = index;
+    var chatBox = document.getElementById('chatbox');
+    chatBox.innerHTML = '';
+
+    let chat = chatHistory[index];
+    currentFile = chat.file;
+    document.getElementById('fileInfo').textContent = `Using: ${currentFile}`;
+    chat.messages.forEach(msg => {
+        updateChat(msg.user, "You");
+        updateChat(msg.bot, "Bot");
+    });
+}
+
+document.getElementById('newChatBtn').onclick = function() {
+    document.getElementById('chatbox').innerHTML = '';
+    currentChatIndex = null;
+    currentFile = null;
+    document.getElementById('fileInfo').textContent = 'No file uploaded';
+    document.getElementById('fileName').textContent = 'No file chosen';
+    document.getElementById('uploadStatus').textContent = '';
+    updateChatHistory();
+
+    alert('Please upload a new IFC file to start this chat.');
+    document.getElementById('fileInput').click();
+};
+
+    </script>
+</body>
+</html>
+

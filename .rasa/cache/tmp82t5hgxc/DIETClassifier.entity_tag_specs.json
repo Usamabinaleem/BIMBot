@@ -1,0 +1,20 @@
+[
+  {
+    "tag_name": "entity",
+    "ids_to_tags": {
+      "1": "B-ifc_class",
+      "2": "I-ifc_class",
+      "3": "L-ifc_class",
+      "4": "U-ifc_class",
+      "0": "O"
+    },
+    "tags_to_ids": {
+      "B-ifc_class": 1,
+      "I-ifc_class": 2,
+      "L-ifc_class": 3,
+      "U-ifc_class": 4,
+      "O": 0
+    },
+    "num_tags": 5
+  }
+]
